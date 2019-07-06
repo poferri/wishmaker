@@ -1,0 +1,123 @@
+{% extends "wishes/base.html" %}
+
+
+
+{% block content %}
+
+<h1>Hello and Welcome {{ user.first_name }} {{ user.last_name }} !</h1><br>
+
+<a href="{% url 'users:logout' %}" class="btn btn-info" role="button">
+    <h1>Logout</h1>
+</a>
+<a href="{% url 'wishes:viewstats' %}" class="btn btn-info" role="button">
+    <h1>View Stats</h1>
+</a>
+<a href="{% url 'wishes:add' %}" class="btn btn-info" role="button">
+    <h1>Make a wish</h1>
+</a>
+<h1>You have Successfully Logged In!</h1><br>
+<h1> Make a wish!</h1><br>
+<h1>Then Grant your Wish!!</h1><br>
+<h1>Like your best Wishes!</h1><br>
+<hr>
+
+<h1>Your wish list </h1>
+<hr>
+<table table class="table table-dark table-striped">
+
+    <thead>
+        <tr>
+
+            <th>Your Name</th>
+            <th>Your wish</th>
+            <th>Description</th>
+            <th>Date added</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for wish in wishes%}
+        {%if wish.granted is False and user.id is wish.creator_id%}
+        <tr>
+
+            <td>{{ wish.wisher }}</td>
+            <td>{{ wish.item }}</td>
+            <td>{{ wish.description }}</td>
+
+            <td>{{wish.created_at }}</td>
+            <td>
+                <form action="{% url 'wishes:delete' wish.id %}" method='post'>
+                    {% csrf_token %}
+                    <input type="submit" value="Remove">
+                </form>
+            </td>
+            <td><a href="{% url 'wishes:edit' wish.id %}" class="button">Edit</a></td>
+            <td>
+                <a href="{% url 'wishes:grant' wish.id %}">Granted!</a>
+            </td>
+
+
+        </tr>
+        {%endif%}
+        {%endfor%}
+
+    </tbody>
+</table>
+
+
+
+
+<h1> Granted Wishes</h1>
+<table table class="table table-dark table-striped">
+
+    <thead>
+        <tr>
+
+            <th>Your Name</th>
+            <th>Your wish</th>
+            <th>Time since Granted</th>
+            <th>Likes</th>
+            <th>Action</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        {%for wish in wishes%}
+        {%if wish.granted is True and user.id is wish.creator_id%}
+        <tr>
+
+            <td>{{ wish.wisher}}</td>
+            <td>{{ wish.item}}</td>
+            <td>{{wish.updated_at | timesince}}</td>
+            <td>{{ wish.likes.count }}</td>
+
+
+            {%if user.id is wish.creator_id and user in wish.likes.all%}
+            <td>
+                <a href="{% url 'wishes:unlike' wish.id %}" class="button">Unlike</a>
+            </td>
+            {% else %}
+            <td>
+                <a href="{% url 'wishes:like' wish.id %}" class="button">Like</a>
+            </td>
+            {%endif%}
+
+
+
+            <td>
+                <form action="{% url 'wishes:delete' wish.id %}" method='post'>
+                    {% csrf_token %}
+                    <input type="submit" value="delete">
+                </form>
+            </td>
+
+        </tr>
+        {%endif%}
+        {%endfor%}
+    </tbody>
+
+</table>
+
+
+{% endblock content %}

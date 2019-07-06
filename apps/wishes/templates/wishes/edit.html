@@ -1,0 +1,47 @@
+{% extends "wishes/base.html" %}
+
+{% block content %}
+
+<h3>Hello {{ user.first_name }} {{ user.last_name }} ! Lets edit your wish </h3>
+
+<h4><a href="{% url 'users:logout' %}" class="button">
+        <h1>Logout</h1>
+    </a>
+    <a href="{% url 'wishes:index' %}" class="button">
+        <h1>Cancel</h1>
+    </a> </h4>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<form action="{% url 'wishes:update' wish.id%}" method='post'>
+    {% csrf_token %}
+    <div class="form-group">
+        <p> <label for="name">I Wish For:</label> </p>
+        <P> <input type="text" class="form-control" name="item" placeholder=" name your wish" value="{{ wish.item }}">
+        </p>
+    </div>
+
+    <div class="form-group">
+        <p><label for="description">Description:</label></p>
+        <textarea name="description" id="" cols="60" rows="5">"{{ wish.description }}"</textarea>
+    </div>
+
+    <div class="form-group">
+        <p> <label for="name">Wisher:</label> </p>
+        <P> <input type="text" class="form-control" name="wisher" placeholder="whats your name "
+                value="{{ wish.wisher }}">
+        </p>
+    </div>
+
+
+    <input class="form-control" type="submit" value="edit">
+
+
+</form>
+</div>
+
+{% endblock content %}

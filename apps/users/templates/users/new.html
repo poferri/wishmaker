@@ -1,0 +1,167 @@
+{% extends "wishes/base.html" %}
+
+{% block title %} Login and Registration{% endblock title %}
+
+<style>
+    @-webkit-keyframes bounce {
+
+        from,
+        20%,
+        53%,
+        80%,
+        to {
+            -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+
+        40%,
+        43% {
+            -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+            animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+            -webkit-transform: translate3d(0, -30px, 0);
+            transform: translate3d(0, -30px, 0);
+        }
+
+        70% {
+            -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+            animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+            -webkit-transform: translate3d(0, -15px, 0);
+            transform: translate3d(0, -15px, 0);
+        }
+
+        90% {
+            -webkit-transform: translate3d(0, -4px, 0);
+            transform: translate3d(0, -4px, 0);
+        }
+    }
+
+    @keyframes bounce {
+
+        from,
+        20%,
+        53%,
+        80%,
+        to {
+            -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+
+        40%,
+        43% {
+            -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+            animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+            -webkit-transform: translate3d(0, -30px, 0);
+            transform: translate3d(0, -30px, 0);
+        }
+
+        70% {
+            -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+            animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+            -webkit-transform: translate3d(0, -15px, 0);
+            transform: translate3d(0, -15px, 0);
+        }
+
+        90% {
+            -webkit-transform: translate3d(0, -4px, 0);
+            transform: translate3d(0, -4px, 0);
+        }
+    }
+
+    .bounce {
+        -webkit-animation-name: bounce;
+        animation-name: bounce;
+        -webkit-transform-origin: center bottom;
+        transform-origin: center bottom;
+    }
+
+    h2 {
+        /* This section calls the slideInFromrightt animation we defined above */
+        animation: 2s ease-out .2s 6 bounce;
+    }
+</style>
+
+
+
+
+`<div class="box">
+    {% block content %}
+
+    <h1>What do you Wish for ?</h1>
+    <h1>What if all your wishes were granted ?</h1>
+    <h1>Signup or Login to make a Wish and then grant your Wish</h1>
+    <h1>Only you can view your wishes</h1>
+    <h1>Wish it, Grant it , and they will Come.</h1>
+
+    <br>
+    <h1> Register:</h1>
+
+    <br>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+    <form action="/users/create/" method='post'>
+        {% csrf_token %}
+        <div class="form-group">
+            <p> <label for="first_name">First Name:</label> </p>
+            <P> <input type="text" class="form-control" name="first_name" placeholder="Please enter your first name">
+            </p>
+        </div>
+        <div class="form-group">
+            <p> <label for="last_name">Last Name:</label> </p>
+            <p> <input type="text" class="form-control" name="last_name" placeholder="Please enter your last name">
+            </p>
+        </div>
+        <div class="form-group">
+            <p> <label for="email">Email:</label> </p>
+            <p> <input type="text" class="form-control" name="email" placeholder="Please enter you email ">
+                We'll never share your email with anyone else.</p>
+        </div>
+        <div class="form-group">
+            <p> <label for="password">Password:</label> </p>
+            <p> <input type="text" class="form-control" name="password" placeholder="password"> </p>
+        </div>
+        <div>
+            <p> <input type="submit" value="Register"> </p>
+        </div>
+    </form>
+
+
+
+
+    <h1>Login</h1>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+    <form action="/users/login/" method='post'>
+        {% csrf_token %}
+        <div class="form-group">
+            <p> <label for="email">Email:</label> </p>
+            <p> <input type="text" class="form-control" name="email" placeholder="Please enter you email ">
+            </p>
+        </div>
+        <div class="form-group">
+            <p> <label for="password">Password:</label> </p>
+            <p> <input type="text" class="form-control" name="password" placeholder="password"> </p>
+        </div>
+        <div>
+            <p> <input type="submit" value="Login"></p>
+        </div>
+    </form>
+</div>
+
+
+
+{% endblock content %}
