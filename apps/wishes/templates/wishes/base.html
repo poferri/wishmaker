@@ -25,7 +25,7 @@
             width: auto;
             height: auto;
             margin: 0px 160px 0px 160px;
-            padding: 160px 40px 240px 40px;
+            padding: 160px 40px 260px 40px;
             border: 0px solid whitesmoke;
             border-radius: 0px;
 
@@ -70,30 +70,25 @@
             margin: 20px 0px 0px 0px;
         }
 
-        #footer,
-        a {
-
+        footer.fixed-bottom,
+        dl,
+        dd {
+            color: rgb(14, 81, 126);
+            display: inline-block;
             vertical-align: top;
             text-align: center;
-            padding: 5px 30px 5px 0px;
+            padding: 2px 5px 2px 50px;
             font-size: 18px;
-        }
-
-
-
-
-        #footer {
-            background-color: rgb(210, 230, 248);
-
-            border-radius: 0px;
-            margin-top: 40px;
-
 
         }
 
-        .spans {
-            color: rgb(23, 95, 179);
+
+        footer.fixed-bottom {
+            background-color: azure;
+            width: auto;
+            height: 40px;
         }
+
 
 
 
@@ -222,25 +217,25 @@
         <h2>Elvis's <span class="spans">Portfolio</span></h2>
 
         <Ul id="header">
-            <a href="">
+            <a href="{% url 'wishes:home' %}">
                 <li> <span class="spans">
                         Home
                     </span></li>
             </a>
-            <a href="">
+            <a href="{% url 'wishes:about' %}">
                 <li> <span class="spans">
                         Aboutme
                     </span></li>
             </a>
 
-            <a href="">
+            <a href="{% url 'wishes:python' %}">
                 <li> Python/Django </li>
             </a>
-            <a href="">
+            <a href="{% url 'wishes:csharp' %}">
                 <li>C#/ASP.NETcore </li>
             </a>
         </Ul>
-        <a href="">
+        <a href="{% url 'wishes:python' %}">
             <img id="icon001" src='{% static "wishes/images/python.png" %}' alt="python"></a>
     </div>
     <div class="container-fluid">
@@ -252,15 +247,24 @@
 
     <footer class="fixed-bottom">
 
-        <div id="footer">
-            <a href=""> Home </a>
-            <a href=""> About </a>
-            <a href=""> Python/Django</a>
-            <a href=""> C#/ASP.NETcore<a>
-                    <a href=""> Contact</a>
+        <dl id="footer">
+            <a href="{% url 'wishes:home' %}">
+                <dd>Home </dd>
+            </a>
+            <a href="{% url 'wishes:about' %}">
+                <dd>About</dd>
+            </a>
+            <a href="{% url 'wishes:python' %}">
+                <dd>Python/Django</dd>
+            </a>
+            <a href="{% url 'wishes:csharp' %}">
+                <dd> C#/ASP.NETcore</dd><a>
+                    <a href="{% url 'wishes:contact' %}">
+                        <dd>Contact</dd>
+                    </a>
 
 
-        </div>
+        </dl>
 
 
     </footer>

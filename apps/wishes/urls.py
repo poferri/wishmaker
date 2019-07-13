@@ -13,4 +13,10 @@ urlpatterns = [
     url(r"^unlike/(?P<wish_id>\d+)/$", views.unlike, name="unlike"),
     url(r"^viewstats/$", views.viewstats, name="viewstats"),
     url(r"^grant/(?P<wish_id>\d+)/$", views.grant, name="grant"),
+    url(r"^home/$", views.home, name="home"),
+    url(r"^about/$", views.about, name="about"),
+    url(r"^python/$", views.python, name="python"),
+    url(r"^csharp/$", views.csharp, name="csharp"),
+    url(r"^contact/$", views.contact, name="contact"),
+
 ]

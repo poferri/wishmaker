@@ -121,3 +121,22 @@ def grant(req, wish_id):
         print(req.POST)
     return redirect("wishes:index")
 
+
+def home(req):
+    return redirect("http://18.220.143.167/")
+
+
+def about(req):
+    return redirect("http://18.220.143.167/about/")
+
+
+def python(req):
+    return redirect("http://18.220.143.167/python/")
+
+
+def csharp(req):
+    return redirect("http://18.220.143.167/csharp/")
+
+
+def contact(req):
+    return redirect("http://18.220.143.167/about/Pdf/")

@@ -75,6 +75,7 @@
 
             <th>Your Name</th>
             <th>Your wish</th>
+            <th>Description</th>
             <th>Time since Granted</th>
             <th>Likes</th>
             <th>Action</th>
@@ -89,6 +90,7 @@
 
             <td>{{ wish.wisher}}</td>
             <td>{{ wish.item}}</td>
+            <td>{{ wish.description }}</td>
             <td>{{wish.updated_at | timesince}}</td>
             <td>{{ wish.likes.count }}</td>
 
