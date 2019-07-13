@@ -123,20 +123,21 @@ def grant(req, wish_id):
 
 
 def home(req):
-    return redirect("http://18.220.143.167/")
+    return redirect("http://18.220.137.34/")
 
 
 def about(req):
-    return redirect("http://18.220.143.167/about/")
+    return redirect("http://18.220.137.34/about/")
 
 
 def python(req):
-    return redirect("http://18.220.143.167/python/")
+    return redirect("http://18.220.137.34/python/")
 
 
 def csharp(req):
-    return redirect("http://18.220.143.167/csharp/")
+    return redirect("http://18.220.137.34/csharp/")
 
 
 def contact(req):
-    return redirect("http://18.220.143.167/about/Pdf/")
+    return redirect("http://18.220.137.34/about/Pdf/")
+
